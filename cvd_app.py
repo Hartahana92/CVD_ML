@@ -1,13 +1,21 @@
+import streamlit as st
+import matplotlib.pyplot as plt
+import seaborn as sns
 import numpy as np
 import pandas as pd
-import streamlit as st
-from imblearn.over_sampling import RandomOverSampler
-from sklearn import preprocessing
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
+from scipy import stats
+from sklearn.ensemble import RandomForestClassifier, BaggingClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.datasets import make_circles
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import roc_auc_score
+from sklearn import preprocessing
+from sklearn import metrics
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score
+from sklearn.decomposition import PCA
+from imblearn.over_sampling import RandomOverSampler
 
 st.title("Предсказательная модель оценки развития сердечно-сосудистых заболеваний")
 st.write("Вероятность развития ССЗ")
@@ -69,3 +77,18 @@ if data is not None:
 
     st.write(f'Classifier = {classifier_name}')
     st.write(f'Accuracy =', acc)
+
+    # plot
+    pca = PCA(2)
+    X_projected = pca.fit_transform(X)
+
+    x1 = X_projected[:, 0]
+    x2 = X_projected[:, 1]
+
+    fig = plt.figure()
+    plt.scatter(x1, x2, c=y, alpha=0.8, cmap="viridis")
+    plt.xlabel("Principle component 1")
+    plt.ylabel("Principle component 2")
+    plt.colorbar()
+
+    st.pyplot(fig)
