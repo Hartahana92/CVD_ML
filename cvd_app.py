@@ -90,5 +90,6 @@ if data is not None:
     plt.xlabel("Principle component 1")
     plt.ylabel("Principle component 2")
     plt.colorbar()
+    st.write("PCA scatter plot")
 
     st.pyplot(fig)
