@@ -17,8 +17,8 @@ from sklearn.metrics import accuracy_score
 from sklearn.decomposition import PCA
 from imblearn.over_sampling import RandomOverSampler
 
-st.title("Предсказательная модель оценки развития сердечно-сосудистых заболеваний")
-st.write("Вероятность развития ССЗ")
+st.title("Черновое приложение для создание и проверки качества моделей ML на основе данных целевого метаболомного профилирования")
+
 data = st.file_uploader("Загрузите файл")
 classifier_name = st.sidebar.selectbox("Select classifier", ("KNN", "SVM", "Random Forest"))
 
